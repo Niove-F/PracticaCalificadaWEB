@@ -12,10 +12,7 @@
           class="q-mr-sm"
         />
 
-        <q-avatar size="40px" class="q-mr-md">
-          <q-icon name="vitals" size="32px" class="text-amber-5" />
-        </q-avatar>
-
+        
         <q-toolbar-title class="text-weight-bold">
           Directorio Corporativo
           <div class="text-caption text-indigo-2 text-weight-regular">
@@ -27,7 +24,7 @@
 
         <div class="row items-center q-gutter-sm">
           <q-chip icon="school" color="indigo-7" text-color="white" dense class="q-px-md">
-            Desan University
+            Esan University
           </q-chip>
         </div>
       </q-toolbar>
@@ -79,14 +76,39 @@
           </q-item-section>
         </q-item>
 
+
+        <q-item 
+          clickable 
+          v-ripple 
+          to="/users" 
+          exact
+          active-class="menu-item-active"
+          class="q-ma-sm rounded-borders"
+        >
+          <q-item-section avatar>
+            <q-icon name="person" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-weight-medium">Usuarios</q-item-label>
+            <q-item-label caption>Busqueda y filtro</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-separator class="q-my-md" />
 
         <q-item-label header class="text-weight-bold text-uppercase text-grey-6">
           Equipo de Desarrollo
         </q-item-label>
         
-        <div class="q-px-md text-caption text-grey-6">
-          Evaluación Grupal PC02
+        <div class="q-px-md text-caption text-grey-8">
+          Evaluación Grupal PC02 <br> Equipo 5
+        </div>
+        <div class="left-padding q-px-md text-caption text-grey-6">
+          Wu - (p. 1 y 2) <br>
+          Andrea - (p. 3 y 4) <br>
+          Niove - (p. 5) <br>
+          Fabriccio - (p. 7) <br>
+          Cristhian - (p. 8) <br>
         </div>
       </q-list>
     </q-drawer>
@@ -121,5 +143,8 @@ function toggleLeftDrawer() {
 
 .menu-item-active .q-icon {
   color: #3f51b5 !important; /* indigo */
+}
+.left-padding {
+  padding-left: 24px;
 }
 </style>

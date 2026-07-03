@@ -2,17 +2,16 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="bg-indigo-9 text-white">
       <q-toolbar class="q-py-sm">
-        <q-btn 
-          flat 
-          dense 
-          round 
-          icon="menu" 
-          aria-label="Menu" 
-          @click="toggleLeftDrawer" 
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
           class="q-mr-sm"
         />
 
-        
         <q-toolbar-title class="text-weight-bold">
           Directorio Corporativo
           <div class="text-caption text-indigo-2 text-weight-regular">
@@ -30,22 +29,16 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer 
-      v-model="leftDrawerOpen" 
-      show-if-above 
-      bordered 
-      :width="260"
-      class="bg-grey-1"
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="260" class="bg-grey-1">
       <q-list padding class="text-grey-8">
         <q-item-label header class="text-weight-bold text-uppercase text-indigo-9 q-xs-pt-md">
           Módulos del Sistema
         </q-item-label>
 
-        <q-item 
-          clickable 
-          v-ripple 
-          to="/" 
+        <q-item
+          clickable
+          v-ripple
+          to="/"
           exact
           active-class="menu-item-active"
           class="q-ma-sm rounded-borders"
@@ -59,10 +52,10 @@
           </q-item-section>
         </q-item>
 
-        <q-item 
-          clickable 
-          v-ripple 
-          to="/comparar" 
+        <q-item
+          clickable
+          v-ripple
+          to="/comparar"
           exact
           active-class="menu-item-active"
           class="q-ma-sm rounded-borders"
@@ -76,11 +69,10 @@
           </q-item-section>
         </q-item>
 
-
-        <q-item 
-          clickable 
-          v-ripple 
-          to="/users" 
+        <q-item
+          clickable
+          v-ripple
+          to="/users"
           exact
           active-class="menu-item-active"
           class="q-ma-sm rounded-borders"
@@ -99,16 +91,17 @@
         <q-item-label header class="text-weight-bold text-uppercase text-grey-6">
           Equipo de Desarrollo
         </q-item-label>
-        
+
         <div class="q-px-md text-caption text-grey-8">
-          Evaluación Grupal PC02 <br> Equipo 5
+          Evaluación Grupal PC02 <br />
+          Equipo 5
         </div>
         <div class="left-padding q-px-md text-caption text-grey-6">
-          Wu - (p. 1 y 2) <br>
-          Andrea - (p. 3 y 4) <br>
-          Niove - (p. 5) <br>
-          Fabriccio - (p. 7) <br>
-          Cristhian - (p. 8) <br>
+          Wu - (p. 1 y 2) <br />
+          Andrea - (p. 3 y 4) <br />
+          Niove - (p. 5) <br />
+          Fabriccio - (p. 7) <br />
+          Cristhian - (p. 8) <br />
         </div>
       </q-list>
     </q-drawer>

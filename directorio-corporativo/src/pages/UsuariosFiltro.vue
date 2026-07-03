@@ -1,10 +1,8 @@
 <template>
   <q-page class="q-pa-md">
-
     <q-card class="q-mb-md q-pa-md bg-grey-1">
       <div class="text-subtitle1 q-mb-sm font-weight-bold">Filtros Avanzados</div>
       <div class="row q-col-gutter-sm fila-filtro">
-        
         <div class="col-12 col-sm-6 col-md-2 genero-filtro">
           <q-select
             v-model="filters.gender"
@@ -58,16 +56,11 @@
         </div>
 
         <div class="col-12 col-sm-6 col-md-3 edad-rango-filtro">
-          <div class="text-caption text-grey-10">Edad: {{ filters.ageRange.min }} - {{ filters.ageRange.max }} años</div>
-          <q-range
-            v-model="filters.ageRange"
-            :min="15"
-            :max="90"
-            label
-            color="primary"
-          />
+          <div class="text-caption text-grey-10">
+            Edad: {{ filters.ageRange.min }} - {{ filters.ageRange.max }} años
+          </div>
+          <q-range v-model="filters.ageRange" :min="15" :max="90" label color="primary" />
         </div>
-
       </div>
 
       <div class="row justify-start q-mt-sm">
@@ -92,19 +85,22 @@
 </template>
 
 <style>
-    .fila-filtro {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-    }
-    .genero-filtro, .empresa-filtro, .ciudad-filtro, .pais-filtro, .edad-rango-filtro {
-        flex: 1;
-    }
-    .edad-rango-filtro {
-        width: 150px
-    }
+.fila-filtro {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.genero-filtro,
+.empresa-filtro,
+.ciudad-filtro,
+.pais-filtro,
+.edad-rango-filtro {
+  flex: 1;
+}
+.edad-rango-filtro {
+  width: 150px;
+}
 </style>
-
 
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
@@ -118,21 +114,33 @@ const filters = reactive({
   company: null,
   city: null,
   country: null,
-  ageRange: { min: 15, max: 90 }
+  ageRange: { min: 15, max: 90 },
 })
 
 const columns = [
-  { name: 'name', label: 'Nombre', field: row => `${row.firstName} ${row.lastName}`, align: 'left', sortable: true },
+  {
+    name: 'name',
+    label: 'Nombre',
+    field: (row) => `${row.firstName} ${row.lastName}`,
+    align: 'left',
+    sortable: true,
+  },
   { name: 'gender', label: 'Género', field: 'gender', align: 'center' },
   { name: 'age', label: 'Edad', field: 'age', align: 'center', sortable: true },
-  { name: 'company', label: 'Empresa', field: row => row.company?.name || 'N/A', align: 'left', sortable: true },
-  { name: 'city', label: 'Ciudad', field: row => row.address?.city || 'N/A', align: 'left' },
-  { name: 'country', label: 'País', field: row => row.address?.country || 'N/A', align: 'left' }
+  {
+    name: 'company',
+    label: 'Empresa',
+    field: (row) => row.company?.name || 'N/A',
+    align: 'left',
+    sortable: true,
+  },
+  { name: 'city', label: 'Ciudad', field: (row) => row.address?.city || 'N/A', align: 'left' },
+  { name: 'country', label: 'País', field: (row) => row.address?.country || 'N/A', align: 'left' },
 ]
 
 const genderOptions = [
   { label: 'Masculino', value: 'male' },
-  { label: 'Femenino', value: 'female' }
+  { label: 'Femenino', value: 'female' },
 ]
 
 onMounted(async () => {
@@ -149,23 +157,23 @@ onMounted(async () => {
 
 // DROPDOWNS
 const companyOptions = computed(() => {
-  const companies = users.value.map(u => u.company?.name).filter(Boolean)
+  const companies = users.value.map((u) => u.company?.name).filter(Boolean)
   return [...new Set(companies)].sort()
 })
 
 const cityOptions = computed(() => {
-  const cities = users.value.map(u => u.address?.city).filter(Boolean)
+  const cities = users.value.map((u) => u.address?.city).filter(Boolean)
   return [...new Set(cities)].sort()
 })
 
 const countryOptions = computed(() => {
-  const countries = users.value.map(u => u.address?.country).filter(Boolean)
+  const countries = users.value.map((u) => u.address?.country).filter(Boolean)
   return [...new Set(countries)].sort()
 })
 
-// FILTRADO 
+// FILTRADO
 const filteredUsers = computed(() => {
-  return users.value.filter(user => {
+  return users.value.filter((user) => {
     // Genero
     if (filters.gender && user.gender !== filters.gender) return false
 

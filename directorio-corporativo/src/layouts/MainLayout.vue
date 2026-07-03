@@ -75,7 +75,7 @@
           </q-item-section>
           <q-item-section>
             <q-item-label class="text-weight-medium">Comparador</q-item-label>
-            <q-item-label caption>Contraste de perfiles</q-item-label>
+            <q-item-label caption>Contraste de perfiles para RRHH</q-item-label>
           </q-item-section>
         </q-item>
 

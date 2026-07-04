@@ -65,61 +65,61 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
-import { userService } from 'src/services/api'; // Importa el servicio que creaste
+import { ref, onMounted, reactive } from 'vue'
+import { userService } from 'src/services/api' // Importa el servicio que creaste
 
-const loading = ref(true);
+const loading = ref(true)
 const metrics = reactive({
   totalUsers: 0,
   maleCount: 0,
   femaleCount: 0,
   avgAge: 0,
   uniqueCompanies: 0,
-  uniqueCities: 0
-});
+  uniqueCities: 0,
+})
 
 const calculateMetrics = (users) => {
-  metrics.totalUsers = users.length;
-  
-  let totalAge = 0;
-  const companiesSet = new Set();
-  const citiesSet = new Set();
+  metrics.totalUsers = users.length
 
-  users.forEach(user => {
+  let totalAge = 0
+  const companiesSet = new Set()
+  const citiesSet = new Set()
+
+  users.forEach((user) => {
     // Conteo por género
-    if (user.gender === 'male') metrics.maleCount++;
-    if (user.gender === 'female') metrics.femaleCount++;
+    if (user.gender === 'male') metrics.maleCount++
+    if (user.gender === 'female') metrics.femaleCount++
 
     // Promedio de edad
-    totalAge += user.age;
+    totalAge += user.age
 
     // Estructuras Set para asegurar valores únicos
     if (user.company && user.company.name) {
-      companiesSet.add(user.company.name);
+      companiesSet.add(user.company.name)
     }
     if (user.address && user.address.city) {
-      citiesSet.add(user.address.city);
+      citiesSet.add(user.address.city)
     }
-  });
+  })
 
   // Cálculos finales
-  metrics.avgAge = metrics.totalUsers > 0 ? (totalAge / metrics.totalUsers).toFixed(1) : 0;
-  metrics.uniqueCompanies = companiesSet.size;
-  metrics.uniqueCities = citiesSet.size;
-};
+  metrics.avgAge = metrics.totalUsers > 0 ? (totalAge / metrics.totalUsers).toFixed(1) : 0
+  metrics.uniqueCompanies = companiesSet.size
+  metrics.uniqueCities = citiesSet.size
+}
 
 onMounted(async () => {
   try {
-    loading.value = true;
+    loading.value = true
     // Consumimos el endpoint general de usuarios sin paginar limit=0 para jalar todos
-    const response = await userService.getDashboardUsers(); 
-    const allUsers = response.data.users;
-    
-    calculateMetrics(allUsers);
+    const response = await userService.getDashboardUsers()
+    const allUsers = response.data.users
+
+    calculateMetrics(allUsers)
   } catch (error) {
-    console.error('Error al calcular los indicadores del Dashboard:', error);
+    console.error('Error al calcular los indicadores del Dashboard:', error)
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-});
+})
 </script>
